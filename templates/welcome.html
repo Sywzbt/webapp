@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}歡迎頁面{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4 mb-4">歡迎，{{ username|add_stars }}！</h1>
+    <div class="mt-4">
+        <a href="{{ url_for('edit_profile', iid=iid) }}" class="btn btn-primary m-2">修改基本資料</a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary m-2">返回首頁</a>
+        <button onclick="confirmDelete()" class="btn btn-danger m-2">刪除使用者</button>
+    </div>
+</div>
+
+<script>
+function confirmDelete() {
+    if (confirm('若刪除這個使用者，所有相關記錄將一併刪除，是否繼續？')) {
+        window.location.href = "{{ url_for('delete_user', iid=iid) }}";
+    }
+}
+</script>
+{% endblock %} 
